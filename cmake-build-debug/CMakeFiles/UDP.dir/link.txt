@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/UDP.dir/main.c.o CMakeFiles/UDP.dir/recvfrom_flags.c.o CMakeFiles/UDP.dir/dg_send_recv.c.o CMakeFiles/UDP.dir/rtt.c.o  -o UDP 
