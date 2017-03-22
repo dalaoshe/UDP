@@ -150,6 +150,87 @@ dg_send_recv.c.s:
 	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/dg_send_recv.c.s
 .PHONY : dg_send_recv.c.s
 
+do_client.o: do_client.c.o
+
+.PHONY : do_client.o
+
+# target to build an object file
+do_client.c.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.o
+.PHONY : do_client.c.o
+
+do_client.i: do_client.c.i
+
+.PHONY : do_client.i
+
+# target to preprocess a source file
+do_client.c.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.i
+.PHONY : do_client.c.i
+
+do_client.s: do_client.c.s
+
+.PHONY : do_client.s
+
+# target to generate assembly for a file
+do_client.c.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.s
+.PHONY : do_client.c.s
+
+do_server.o: do_server.c.o
+
+.PHONY : do_server.o
+
+# target to build an object file
+do_server.c.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.o
+.PHONY : do_server.c.o
+
+do_server.i: do_server.c.i
+
+.PHONY : do_server.i
+
+# target to preprocess a source file
+do_server.c.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.i
+.PHONY : do_server.c.i
+
+do_server.s: do_server.c.s
+
+.PHONY : do_server.s
+
+# target to generate assembly for a file
+do_server.c.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.s
+.PHONY : do_server.c.s
+
+error_check.o: error_check.c.o
+
+.PHONY : error_check.o
+
+# target to build an object file
+error_check.c.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.o
+.PHONY : error_check.c.o
+
+error_check.i: error_check.c.i
+
+.PHONY : error_check.i
+
+# target to preprocess a source file
+error_check.c.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.i
+.PHONY : error_check.c.i
+
+error_check.s: error_check.c.s
+
+.PHONY : error_check.s
+
+# target to generate assembly for a file
+error_check.c.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.s
+.PHONY : error_check.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -243,6 +324,15 @@ help:
 	@echo "... dg_send_recv.o"
 	@echo "... dg_send_recv.i"
 	@echo "... dg_send_recv.s"
+	@echo "... do_client.o"
+	@echo "... do_client.i"
+	@echo "... do_client.s"
+	@echo "... do_server.o"
+	@echo "... do_server.i"
+	@echo "... do_server.s"
+	@echo "... error_check.o"
+	@echo "... error_check.i"
+	@echo "... error_check.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

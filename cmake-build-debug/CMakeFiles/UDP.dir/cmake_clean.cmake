@@ -3,6 +3,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/UDP.dir/recvfrom_flags.c.o"
   "CMakeFiles/UDP.dir/dg_send_recv.c.o"
   "CMakeFiles/UDP.dir/rtt.c.o"
+  "CMakeFiles/UDP.dir/do_client.c.o"
+  "CMakeFiles/UDP.dir/error_check.c.o"
+  "CMakeFiles/UDP.dir/do_server.c.o"
   "UDP.pdb"
   "UDP"
 )

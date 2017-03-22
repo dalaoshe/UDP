@@ -153,12 +153,87 @@ CMakeFiles/UDP.dir/rtt.c.o.provides: CMakeFiles/UDP.dir/rtt.c.o.requires
 CMakeFiles/UDP.dir/rtt.c.o.provides.build: CMakeFiles/UDP.dir/rtt.c.o
 
 
+CMakeFiles/UDP.dir/do_client.c.o: CMakeFiles/UDP.dir/flags.make
+CMakeFiles/UDP.dir/do_client.c.o: ../do_client.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/UDP.dir/do_client.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/UDP.dir/do_client.c.o   -c /home/dalaoshe/network_demo/UDP/do_client.c
+
+CMakeFiles/UDP.dir/do_client.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/UDP.dir/do_client.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dalaoshe/network_demo/UDP/do_client.c > CMakeFiles/UDP.dir/do_client.c.i
+
+CMakeFiles/UDP.dir/do_client.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/UDP.dir/do_client.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dalaoshe/network_demo/UDP/do_client.c -o CMakeFiles/UDP.dir/do_client.c.s
+
+CMakeFiles/UDP.dir/do_client.c.o.requires:
+
+.PHONY : CMakeFiles/UDP.dir/do_client.c.o.requires
+
+CMakeFiles/UDP.dir/do_client.c.o.provides: CMakeFiles/UDP.dir/do_client.c.o.requires
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.o.provides.build
+.PHONY : CMakeFiles/UDP.dir/do_client.c.o.provides
+
+CMakeFiles/UDP.dir/do_client.c.o.provides.build: CMakeFiles/UDP.dir/do_client.c.o
+
+
+CMakeFiles/UDP.dir/error_check.c.o: CMakeFiles/UDP.dir/flags.make
+CMakeFiles/UDP.dir/error_check.c.o: ../error_check.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/UDP.dir/error_check.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/UDP.dir/error_check.c.o   -c /home/dalaoshe/network_demo/UDP/error_check.c
+
+CMakeFiles/UDP.dir/error_check.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/UDP.dir/error_check.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dalaoshe/network_demo/UDP/error_check.c > CMakeFiles/UDP.dir/error_check.c.i
+
+CMakeFiles/UDP.dir/error_check.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/UDP.dir/error_check.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dalaoshe/network_demo/UDP/error_check.c -o CMakeFiles/UDP.dir/error_check.c.s
+
+CMakeFiles/UDP.dir/error_check.c.o.requires:
+
+.PHONY : CMakeFiles/UDP.dir/error_check.c.o.requires
+
+CMakeFiles/UDP.dir/error_check.c.o.provides: CMakeFiles/UDP.dir/error_check.c.o.requires
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.o.provides.build
+.PHONY : CMakeFiles/UDP.dir/error_check.c.o.provides
+
+CMakeFiles/UDP.dir/error_check.c.o.provides.build: CMakeFiles/UDP.dir/error_check.c.o
+
+
+CMakeFiles/UDP.dir/do_server.c.o: CMakeFiles/UDP.dir/flags.make
+CMakeFiles/UDP.dir/do_server.c.o: ../do_server.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/UDP.dir/do_server.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/UDP.dir/do_server.c.o   -c /home/dalaoshe/network_demo/UDP/do_server.c
+
+CMakeFiles/UDP.dir/do_server.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/UDP.dir/do_server.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dalaoshe/network_demo/UDP/do_server.c > CMakeFiles/UDP.dir/do_server.c.i
+
+CMakeFiles/UDP.dir/do_server.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/UDP.dir/do_server.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dalaoshe/network_demo/UDP/do_server.c -o CMakeFiles/UDP.dir/do_server.c.s
+
+CMakeFiles/UDP.dir/do_server.c.o.requires:
+
+.PHONY : CMakeFiles/UDP.dir/do_server.c.o.requires
+
+CMakeFiles/UDP.dir/do_server.c.o.provides: CMakeFiles/UDP.dir/do_server.c.o.requires
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.o.provides.build
+.PHONY : CMakeFiles/UDP.dir/do_server.c.o.provides
+
+CMakeFiles/UDP.dir/do_server.c.o.provides.build: CMakeFiles/UDP.dir/do_server.c.o
+
+
 # Object files for target UDP
 UDP_OBJECTS = \
 "CMakeFiles/UDP.dir/main.c.o" \
 "CMakeFiles/UDP.dir/recvfrom_flags.c.o" \
 "CMakeFiles/UDP.dir/dg_send_recv.c.o" \
-"CMakeFiles/UDP.dir/rtt.c.o"
+"CMakeFiles/UDP.dir/rtt.c.o" \
+"CMakeFiles/UDP.dir/do_client.c.o" \
+"CMakeFiles/UDP.dir/error_check.c.o" \
+"CMakeFiles/UDP.dir/do_server.c.o"
 
 # External object files for target UDP
 UDP_EXTERNAL_OBJECTS =
@@ -167,9 +242,12 @@ UDP: CMakeFiles/UDP.dir/main.c.o
 UDP: CMakeFiles/UDP.dir/recvfrom_flags.c.o
 UDP: CMakeFiles/UDP.dir/dg_send_recv.c.o
 UDP: CMakeFiles/UDP.dir/rtt.c.o
+UDP: CMakeFiles/UDP.dir/do_client.c.o
+UDP: CMakeFiles/UDP.dir/error_check.c.o
+UDP: CMakeFiles/UDP.dir/do_server.c.o
 UDP: CMakeFiles/UDP.dir/build.make
 UDP: CMakeFiles/UDP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable UDP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable UDP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/UDP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -181,6 +259,9 @@ CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/main.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/recvfrom_flags.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/dg_send_recv.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/rtt.c.o.requires
+CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/do_client.c.o.requires
+CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/error_check.c.o.requires
+CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/do_server.c.o.requires
 
 .PHONY : CMakeFiles/UDP.dir/requires
 

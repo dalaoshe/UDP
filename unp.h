@@ -27,13 +27,17 @@
 #define SERV_PORT 6666
 #define CLIENT_PORT 5555
 #define MAX_LEN 4096
+
 struct unp_in_pktinfo {
     struct in_addr	ipi_addr;	/* dst IPv4 address */
     int				ipi_ifindex;/* received interface index */
 };
 
-struct control_hdr {
-    uint32_t	seq;	/* sequence # */
-    uint32_t	ts;		/* timestamp when sent */
-};
+
+int Socket(int __domain, int __type, int __protocol) ;
+
+int Socket_Peer_Connect(int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len) ;
+
+int Bind_Socket(int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len) ;
+
 #endif //UDP_UNP_H

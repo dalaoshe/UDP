@@ -87,6 +87,21 @@
 		<Unit filename="/home/dalaoshe/network_demo/UDP/dg_send_recv.c">
 			<Option target="UDP"/>
 		</Unit>
+		<Unit filename="/home/dalaoshe/network_demo/UDP/do_client.c">
+			<Option target="UDP"/>
+		</Unit>
+		<Unit filename="/home/dalaoshe/network_demo/UDP/do_client.h">
+			<Option target="UDP"/>
+		</Unit>
+		<Unit filename="/home/dalaoshe/network_demo/UDP/do_server.c">
+			<Option target="UDP"/>
+		</Unit>
+		<Unit filename="/home/dalaoshe/network_demo/UDP/do_server.h">
+			<Option target="UDP"/>
+		</Unit>
+		<Unit filename="/home/dalaoshe/network_demo/UDP/error_check.c">
+			<Option target="UDP"/>
+		</Unit>
 		<Unit filename="/home/dalaoshe/network_demo/UDP/main.c">
 			<Option target="UDP"/>
 		</Unit>
