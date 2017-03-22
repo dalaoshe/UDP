@@ -11,6 +11,19 @@ static struct control_hdr sendhdr, recvhdr;
 static void	sig_alrm(int signo);
 static sigjmp_buf	jmpbuf;
 
+static int check_from_server(struct control_hdr* hdr) {// 基于时间戳的服务器程序验证，
+    uint32_t server_auth = serverHash(hdr->ts);
+    if(server_auth!= hdr->ts_hash) {
+        fprintf(stderr,"not from client client:%u  server:%u\n",hdr->ts_hash,server_auth);
+        return 0;
+    }
+    return 1;
+}
+
+static int check_recv_hdr(struct control_hdr* hdr) {
+    int from_server = check_from_server(hdr);
+    return from_server;
+}
 ssize_t
 dg_send_recv(int fd,
              void* outbuff, size_t outbytes,
@@ -38,6 +51,8 @@ dg_send_recv(int fd,
 
 #endif
     sendhdr.ts = rtt_ts(&rttinfo);
+    sendhdr.ts_hash = clientHash(sendhdr.ts);
+
     // send request
     Sendto(fd, &sendhdr,sizeof(struct control_hdr), outbuff, outbytes, destaddr, destlen);
 
@@ -68,8 +83,11 @@ dg_send_recv(int fd,
         int flags = 0;
         printf("recv wait\n");
         n = Recvfrom_flags(fd, &recvhdr, sizeof(recvhdr), inbuff, inbytes, &flags, NULL, NULL, &info);
-
-
+        int check_server = check_from_server(&recvhdr);
+        if(!check_server) {
+            fprintf(stderr, "not valid server!!!! exit\n");
+            exit(0);
+        }
 #ifdef	RTT_DEBUG
         printf("recv seq %4d\n", recvhdr.seq);
 #endif

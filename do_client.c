@@ -3,12 +3,135 @@
 //
 
 #include "do_client.h"
+void printRequest(struct RequestData* data) {
+    printf("request %u %u %u \n",data->cmd, data->identifier, data->param);
+}
 uint32_t getCmd(char cmd_str[]) {
-    if(strcmp(cmd_str,"PI") == 0) {
+    printf("cmd %s1\n",cmd_str);
+    if((strcmp(cmd_str,"GET") == 0)) {
+      //  printf("CMD GET\n");
+        return GET;
+    }
+
+    return ERROR_CMD;
+}
+uint32_t getIdentifier(char identifier[]) {
+    printf("identif %s\n",identifier);
+    if(strcmp(identifier,"PI") == 0) {
         return PI;
     }
-    return 0xffffffff;
+
+    return ERROR_IDENTIFIER;
 }
+u_int8_t getParam(char param[]) {
+    printf("param %s\n",param);
+    if(strcmp(param,"-l=10") == 0) {
+        //printf("param %s\n",param);
+        return (PARAM_P | PARAM_D);
+    }
+
+    return 0;
+}
+uint32_t pack_request_data(char cmd_str[], struct RequestData* data) {
+    FILE* fd = fmemopen(cmd_str,strlen(cmd_str),"r");
+    char c; //
+
+    int status = 0; // 状态机
+    char cmd[CMD_LEN]; // 命令字符串
+    char identifier[IDENTIFIER_LEN]; // 常数字符串
+    char params[PARAMS_LEN];// 参数字符串
+    memset(params,0,sizeof(params));
+    memset(identifier,0,sizeof(identifier));
+    memset(cmd,0,sizeof(cmd));
+    uint32_t index = 0;
+    uint32_t n = 0;// 读取多少位
+
+    data->cmd = ERROR_CMD;
+    data->identifier = ERROR_IDENTIFIER;
+    data->param = 0;
+    int over = 0;
+    while((c = getc(fd)) != EOF) {
+        if(over)break;
+        n++;
+        if(c == '\n' || c == '\r') {
+            if(status == 0)continue;
+            break;
+        }
+        if(c == ' ') {
+            if((status & 1)== 0) continue;//偶数表示正在过滤空格
+            if(status == 1) {// CMD读取完毕
+                cmd[index] = 0;
+                status = 2;// 过滤cmd之后的空格
+                index = 0;
+                continue;
+            }
+            if(status == 3) {// 请求常数标识符读取完毕
+                identifier[index] = 0;
+                status = 4;// 过滤常数标识符之后的空格
+                index = 0;
+                continue;
+            }
+            if(status == 5) {// 参数读取完毕
+                params[index] = 0;
+                break;// 结束本次读取
+            }
+        }
+        else {
+            switch (status) {
+                case 0: {//开始cmd的读取
+                    cmd[index] = c;
+                    status = 1;
+                    index++;
+                    break;
+                }
+                case 1: {//继续读取cmd
+                    cmd[index] = c;
+                    status = 1;
+                    index++;
+                    break;
+                }
+                case 2: {//开始常数标识符读取
+                    identifier[index] = c;
+                    status = 3;
+                    index++;
+                    break;
+                }
+                case 3: {// 继续读取常数标识符
+                    identifier[index] = c;
+                    status = 3;
+                    index++;
+                    break;
+                }
+                case 4: {
+                    if(c == '-') {// 读取请求参数
+                        params[index] = c;
+                        status = 5;
+                        index++;
+                    }
+                    else {// 下一个请求
+                        n = n-1;
+                        over = 1;
+                    }
+                    break;
+                }
+                case 5: {
+                    params[index] = c;
+                    index++;
+                    break;
+                }
+                default: {
+
+                }
+            }
+        }
+    }
+    data->cmd = getCmd(cmd);
+    data->identifier = getIdentifier(identifier);
+    data->param = getParam(params);
+    //mprintf("\n");
+    return n;
+}
+
 void do_client() {
 
 
@@ -26,14 +149,22 @@ void do_client() {
     Socket_Peer_Connect(sockfd, (SA*) &servaddr, len);
 
     char cmd_str[MAX_LEN]  = "PI" ;
-
+    char name[MAX_LEN] = "test.txt";
     printf("client start\n");
-    while(1) {
+    FILE* file;
+    if(!(file = fopen(name, "r"))) {
+        fprintf(stderr, "open file:%s failed \n", name);
+    }
+    int n = fread(cmd_str,1,MAX_LEN,file);
+    int index = 0;
+
+    while(index < n) {
         struct RequestData requestData;
         struct ResponseData responseData;
-        uint32_t cmd = getCmd(cmd_str);
-        requestData.cmd = cmd;
-        printf("fd %d \n",sockfd);
+        memset(&responseData, 0, sizeof(responseData));
+        printf("read request: %s\n",cmd_str);
+        index += pack_request_data(cmd_str+index, &requestData);
+        printRequest(&requestData);
         Dg_send_recv(sockfd, &requestData, sizeof(requestData), &responseData, sizeof(responseData), (SA*)&servaddr, len);
         printf("recv server: %lf \n", *((double*)(responseData.data)));
 

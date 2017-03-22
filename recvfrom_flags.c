@@ -135,3 +135,22 @@ Sendto(int fd,void* send_hdr, size_t hdr_nbytes, void *ptr, size_t nbytes,
     }
     return n;
 }
+uint32_t clientHash(uint32_t tv)
+{
+    uint32_t key = tv;
+    for(int i = 0; i < 16; ++i) {
+    key = (key << 1) + CLIENT_AUTH_MAGIC;
+    }
+    key = key % CLIENT_HASH_MAGIC;
+    return key;
+}
+
+uint32_t serverHash(uint32_t tv)
+{
+    uint32_t key = tv;
+    for(int i = 0; i < 16; ++i) {
+        key = (key << 1) + SERVER_AUTH_MAGIC;
+    }
+    key = key % SERVER_HASH_MAGIC;
+    return key;
+}

@@ -52,15 +52,30 @@ Sendto(int fd,void* send_hdr, size_t hdr_nbytes, void *ptr, size_t nbytes,
 
 ssize_t	Dg_send_recv(int, void *, size_t, void *, size_t,
                          SA *, socklen_t);
-
-
+uint32_t clientHash(uint32_t tv);
+uint32_t serverHash(uint32_t tv);
+/* hash */
+#define CLIENT_AUTH_MAGIC 1333
+#define CLIENT_HASH_MAGIC 23332333
+#define SERVER_AUTH_MAGIC 666
+#define SERVER_HASH_MAGIC 12345679
 #define IDENTIFIER_LEN 10
 #define RESPONSE_LEN 10
+#define CMD_LEN 10
+#define PARAMS_LEN 20
+#define CLIENT_POOL_SIZE
 #define PI 0
-
+#define GET 0
+#define PARAM_P 0x1
+#define PARAM_D 0x2
+#define PARAM_L 0x3
+#define ERROR_CMD 0xff
+#define ERROR_IDENTIFIER 0xff
 struct control_hdr {
     uint32_t	seq;	/* sequence # */
     uint32_t	ts;		/* timestamp when sent */
+    uint32_t    ts_hash;
+    uint32_t    magic;  /* magic valid */
     uint16_t    flags;  /* protocol flags */
     uint16_t    offset;  /* maybe divide because exceed the MAX_LEN */
     uint16_t    check_sum; /* authentication */
@@ -69,7 +84,8 @@ struct control_hdr {
 
 struct RequestData {
     uint32_t cmd;
-    uint32_t condition;
+    uint32_t identifier;
+    u_int8_t param;
 };
 
 struct ResponseData {
