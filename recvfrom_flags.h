@@ -6,12 +6,10 @@
 #define UDP_RECVFROM_FLAGS_H
 
 #include "unp.h"
-//class recvfrom_flags {
-//
-//};
 ssize_t
-Recvfrom_flags(int fd, void *ptr, size_t nbytes, int *flagsp,
+Recvfrom_flags(int fd,struct control_hdr* recv_hdr, void *ptr, size_t nbytes, int *flagsp,
                SA *sa, socklen_t *salenptr, struct unp_in_pktinfo *pktp);
-int aas;
-int ss;
+ssize_t
+Sendto_flags(int fd,struct control_hdr* recv_hdr, void *ptr, size_t nbytes, int *flagsp,
+               SA *sa, socklen_t salenptr);
 #endif //UDP_RECVFROM_FLAGS_H

@@ -29,6 +29,15 @@ void	 rtt_stop(struct rtt_info *, uint32_t);
 int		 rtt_timeout(struct rtt_info *);
 uint32_t rtt_ts(struct rtt_info *);
 
+/* function prototypes */
+void	 rtt_debug_tv(struct rtt_info *);
+void	 rtt_init_tv(struct rtt_info *);
+void	 rtt_newpack_tv(struct rtt_info *);
+struct itimerval rtt_start_tv(struct rtt_info *);
+void	 rtt_stop_tv(struct rtt_info *, uint32_t);
+int		 rtt_timeout_tv(struct rtt_info *);
+uint32_t rtt_ts(struct rtt_info *);
+
 extern int	rtt_d_flag;	/* can be set nonzero for addl info */
 ssize_t	Dg_send_recv(int, const void *, size_t, void *, size_t,
                         const SA *, socklen_t);

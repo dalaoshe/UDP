@@ -7,14 +7,12 @@
 static struct rtt_info   rttinfo;
 static int	rttinit = 0;
 static struct msghdr	msgsend, msgrecv;	/* assumed init to 0 */
-static struct hdr {
-    uint32_t	seq;	/* sequence # */
-    uint32_t	ts;		/* timestamp when sent */
-} sendhdr, recvhdr;
+static struct control_hdr sendhdr, recvhdr;
 
 static void	sig_alrm(int signo);
 static sigjmp_buf	jmpbuf;
-
+//struct sig_automic_t canjmp;
+struct sigaction act;
 ssize_t
 dg_send_recv(int fd, const void *outbuff, size_t outbytes,
              void *inbuff, size_t inbytes,
@@ -35,7 +33,7 @@ dg_send_recv(int fd, const void *outbuff, size_t outbytes,
     msgsend.msg_iov = iovsend;
     msgsend.msg_iovlen = 2;
     iovsend[0].iov_base = &sendhdr;
-    iovsend[0].iov_len = sizeof(struct hdr);
+    iovsend[0].iov_len = sizeof(struct control_hdr);
     iovsend[1].iov_base = outbuff;
     iovsend[1].iov_len = outbytes;
 
@@ -44,13 +42,13 @@ dg_send_recv(int fd, const void *outbuff, size_t outbytes,
     msgrecv.msg_iov = iovrecv;
     msgrecv.msg_iovlen = 2;
     iovrecv[0].iov_base = &recvhdr;
-    iovrecv[0].iov_len = sizeof(struct hdr);
+    iovrecv[0].iov_len = sizeof(struct control_hdr);
     iovrecv[1].iov_base = inbuff;
     iovrecv[1].iov_len = inbytes;
 /* end dgsendrecv1 */
 
 /* include dgsendrecv2 */
-    signal(SIGALRM, sig_alrm);
+    signal(ITIMER_VIRTUAL, sig_alrm);
     rtt_newpack(&rttinfo);		/* initialize for this packet */
 
     sendagain:
@@ -60,7 +58,10 @@ dg_send_recv(int fd, const void *outbuff, size_t outbytes,
     sendhdr.ts = rtt_ts(&rttinfo);
     sendmsg(fd, &msgsend, 0);
 
-    alarm(rtt_start(&rttinfo));	/* calc timeout value & start timer */
+
+    struct itimerval tv = rtt_start_tv(&rttinfo);
+    setitimer(ITIMER_VIRTUAL, &tv, NULL);
+
 #ifdef	RTT_DEBUG
     rtt_debug(&rttinfo);
 #endif
@@ -83,13 +84,14 @@ dg_send_recv(int fd, const void *outbuff, size_t outbytes,
 #ifdef	RTT_DEBUG
         fprintf(stderr, "recv %4d\n", recvhdr.seq);
 #endif
-    } while (n < sizeof(struct hdr) || recvhdr.seq != sendhdr.seq);
-
-    alarm(0);			/* stop SIGALRM timer */
+    } while (n < sizeof(struct control_hdr) || recvhdr.seq != sendhdr.seq);
+    tv.it_value.tv_sec = tv.it_value.tv_usec = 0;
+    setitimer(ITIMER_VIRTUAL, &tv, NULL);
+    //alarm(0);			/* stop SIGALRM timer */
     /* 4calculate & store new RTT estimator values */
     rtt_stop(&rttinfo, rtt_ts(&rttinfo) - recvhdr.ts);
 
-    return(n - sizeof(struct hdr));	/* return size of received datagram */
+    return(n - sizeof(struct control_hdr));	/* return size of received datagram */
 }
 
 static void

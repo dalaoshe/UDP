@@ -24,8 +24,16 @@
 #include	<sys/wait.h>
 #include	<sys/un.h>		/* for Unix domain sockets */
 #define	SA	struct sockaddr
+#define SERV_PORT 6666
+#define CLIENT_PORT 5555
+#define MAX_LEN 4096
 struct unp_in_pktinfo {
     struct in_addr	ipi_addr;	/* dst IPv4 address */
     int				ipi_ifindex;/* received interface index */
+};
+
+struct control_hdr {
+    uint32_t	seq;	/* sequence # */
+    uint32_t	ts;		/* timestamp when sent */
 };
 #endif //UDP_UNP_H

@@ -5,11 +5,11 @@
 #include "recvfrom_flags.h"
 
 ssize_t
-recvfrom_flags(int fd, void *ptr, size_t nbytes, int *flagsp,
+recvfrom_flags(int fd,struct control_hdr* recvhdr, void *ptr, size_t nbytes, int *flagsp,
                SA *sa, socklen_t *salenptr, struct unp_in_pktinfo *pktp)
 {
     struct msghdr	msg;
-    struct iovec	iov[1];
+    struct iovec	recv_iov[2];
     ssize_t			n;
 
 #ifdef	HAVE_MSGHDR_MSG_CONTROL
@@ -26,13 +26,18 @@ recvfrom_flags(int fd, void *ptr, size_t nbytes, int *flagsp,
 #else
     bzero(&msg, sizeof(msg));	/* make certain msg_accrightslen = 0 */
 #endif
-
+    //设置接受消息头
     msg.msg_name = sa;
     msg.msg_namelen = *salenptr;
-    iov[0].iov_base = ptr;
-    iov[0].iov_len = nbytes;
-    msg.msg_iov = iov;
-    msg.msg_iovlen = 1;
+    //设置接受消息buff
+    // 序列号和时间戳
+    recv_iov[0].iov_base = recvhdr;
+    recv_iov[0].iov_len = sizeof(struct control_hdr);
+    // 请求数据
+    recv_iov[1].iov_base = ptr;
+    recv_iov[1].iov_len = nbytes;
+    msg.msg_iov = recv_iov;
+    msg.msg_iovlen = 2;
 
     if ( (n = recvmsg(fd, &msg, *flagsp)) < 0)
         return(n);
@@ -85,14 +90,40 @@ recvfrom_flags(int fd, void *ptr, size_t nbytes, int *flagsp,
 /* end recvfrom_flags2 */
 
 ssize_t
-Recvfrom_flags(int fd, void *ptr, size_t nbytes, int *flagsp,
+Recvfrom_flags(int fd,struct control_hdr* recv_hdr, void *ptr, size_t nbytes, int *flagsp,
                SA *sa, socklen_t *salenptr, struct unp_in_pktinfo *pktp)
 {
     ssize_t		n;
 
-    n = recvfrom_flags(fd, ptr, nbytes, flagsp, sa, salenptr, pktp);
+    n = recvfrom_flags(fd, recv_hdr, ptr, nbytes, flagsp, sa, salenptr, pktp);
     if (n < 0)
         printf("recvfrom_flags error");
 
     return(n);
+}
+
+ssize_t
+Sendto_flags(int fd,struct control_hdr* send_hdr, void *ptr, size_t nbytes, int *flagsp,
+             SA *sa, socklen_t salenptr) {
+    struct msghdr	msg;
+    struct iovec	send_iov[2];
+    ssize_t			n;
+    memset(&msg, 0, sizeof(msg));
+
+    msg.msg_name = sa;
+    msg.msg_namelen = salenptr;
+
+    send_iov[0].iov_base = send_hdr;
+    send_iov[0].iov_len = sizeof(struct control_hdr);
+    send_iov[1].iov_base = ptr;
+    send_iov[1].iov_len = nbytes;
+
+    msg.msg_iov = send_iov;
+    msg.msg_iovlen = 2;
+    msg.msg_flags = 0;
+
+    if((n = sendmsg(fd, &msg, *flagsp)) < 0) {
+        printf("send error \n");
+    }
+    return n;
 }

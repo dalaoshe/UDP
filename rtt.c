@@ -73,7 +73,13 @@ rtt_start(struct rtt_info *ptr)
     /* 4return value can be used as: alarm(rtt_start(&foo)) */
 }
 /* end rtt_ts */
-
+struct itimerval
+rtt_start_tv(struct rtt_info *ptr) {
+    struct itimerval vt;
+    vt.it_interval.tv_sec = vt.it_interval.tv_usec = 0;
+    vt.it_value.tv_sec = rtt_start(ptr);
+    return vt;
+}
 /*
  * A response was received.
  * Stop the timer and update the appropriate values in the structure
