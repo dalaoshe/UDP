@@ -9,8 +9,8 @@ SRCS = main.c dg_send_recv.c rtt.c recvfrom_flags.c do_client.c \
 	do_server.c error_check.c
 
 OBJS = main.o do_client.o do_server.o \
-	dg_send_recv.o recvfrom_flags.o rtt.o error_check.o\
-	token_bucket.o token_bucket_map.o
+	client_send_recv.o recvfrom_flags.o rtt.o error_check.o\
+	token_bucket.o token_bucket_map.o server_util.o
 
 main: $(OBJS) $(HEAD)
 	echo $(OBJS) $(BINDIR)/$@
@@ -22,6 +22,9 @@ main: $(OBJS) $(HEAD)
 
 #do_server.o: do_server.c recvfrom_flags.o do_server.h
 #	gcc -c do_server.c recvfrom_flags.o
+
+server_util.o: server_util.cpp server_util.h
+	g++ -o $@ -c $<
 
 token_bucket_map.o: token_bucket_map.cpp token_bucket.h
 	g++ -o $@ -c $<

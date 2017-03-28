@@ -4,14 +4,12 @@
 
 #include "server_util.h"
 #include <cstdlib>
-#define setBit(x,y) { y = 1 << y; x = x | y; }
-#define clearBit(x,y) { y = 1 << y; x = x ^ y; }
-#define getBit(x,y) { y = 1 << y; }
-static double pi = 3.1415927365298276735725375;
+#define MAX_NUMBER_LEN 4096
+static char pi[] = "3.141592657123456789123456789";
 static int getNumber(int id, char* buffer) {
-    switch (request->identifier) {
+    switch (id) {
         case PI: {
-            sprintf(buffer,"%lf0",pi);
+            sprintf(buffer,"%s",pi);
             break;
         }
         default:
@@ -20,35 +18,44 @@ static int getNumber(int id, char* buffer) {
     return 0;
 }
 
+//根据请求常数所带的参数,判断应该回复几个分组才能传输所请求的常数长度
 static int getNeedPackets(u_int8_t params) {
     int response_packet = 1;
-    if((request->param & PARAM_P) && (request->param & PARAM_D))
-        response_packet = 4;
+    if((params & PARAM_P) && (params & PARAM_D))
+        response_packet = 10;
     else
         response_packet = 1;
     return response_packet;
 }
 
-int pack_response_hdr(struct control_hdr* hdr, int flag) {
+//打包回复的消息头,设置flag和对应的ts_hash, 不改变seq
+int pack_response_hdr(struct control_hdr* hdr, int resp_size, int flag) {
+    hdr->flags = flag;
+    hdr->resp_len = resp_size;
     hdr->ts_hash = serverHash(hdr->ts);
 }
+
+//根据请求,将请求常数打包成最大长度固定的分组的回复包response_list, 返回分组数量
 int pack_response_data(struct RequestData* request, struct ResponseData* response_list) {
     int response_packet = getNeedPackets(request->param);
     memset(response_list,0,sizeof(struct ResponseData)*response_packet);
     switch (request->cmd) {
-        case GET:
-            char *buffer = new buffer[4096];
+        case GET: {
+            char *buffer = new char[MAX_NUMBER_LEN];
             getNumber(request->identifier, buffer);
-            for(int i = 0; i < response_packet; ++i) {
-                char* data = buffer+RESPONSE_LEN*i;
-                for(int j = 0; j < RESPONSE_LEN; ++j) {
+            for (int i = 0; i < response_packet; ++i) {
+                char *data = buffer + RESPONSE_LEN * i;
+                for (int j = 0; j < RESPONSE_LEN; ++j) {
                     response_list[i].data[j] = data[j];
                 }
                 response_list[i].response_no = i;
             }
+            delete[]buffer;
             break;
-        default:
+        }
+        default: {
             break;
+        }
     }
     return response_packet;
 }

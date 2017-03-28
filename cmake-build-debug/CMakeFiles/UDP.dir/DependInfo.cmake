@@ -20,7 +20,7 @@ set(CMAKE_C_COMPILER_ID "GNU")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/dalaoshe/network_demo/UDP/token_bucken_map.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucken_map.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/token_bucket_map.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucket_map.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

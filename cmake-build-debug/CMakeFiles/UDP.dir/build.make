@@ -249,28 +249,28 @@ CMakeFiles/UDP.dir/token_bucket.c.o.provides: CMakeFiles/UDP.dir/token_bucket.c.
 CMakeFiles/UDP.dir/token_bucket.c.o.provides.build: CMakeFiles/UDP.dir/token_bucket.c.o
 
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.o: CMakeFiles/UDP.dir/flags.make
-CMakeFiles/UDP.dir/token_bucken_map.cpp.o: ../token_bucken_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/UDP.dir/token_bucken_map.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/UDP.dir/token_bucken_map.cpp.o -c /home/dalaoshe/network_demo/UDP/token_bucken_map.cpp
+CMakeFiles/UDP.dir/token_bucket_map.cpp.o: CMakeFiles/UDP.dir/flags.make
+CMakeFiles/UDP.dir/token_bucket_map.cpp.o: ../token_bucket_map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/UDP.dir/token_bucket_map.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/UDP.dir/token_bucket_map.cpp.o -c /home/dalaoshe/network_demo/UDP/token_bucket_map.cpp
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/UDP.dir/token_bucken_map.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dalaoshe/network_demo/UDP/token_bucken_map.cpp > CMakeFiles/UDP.dir/token_bucken_map.cpp.i
+CMakeFiles/UDP.dir/token_bucket_map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/UDP.dir/token_bucket_map.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dalaoshe/network_demo/UDP/token_bucket_map.cpp > CMakeFiles/UDP.dir/token_bucket_map.cpp.i
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/UDP.dir/token_bucken_map.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dalaoshe/network_demo/UDP/token_bucken_map.cpp -o CMakeFiles/UDP.dir/token_bucken_map.cpp.s
+CMakeFiles/UDP.dir/token_bucket_map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/UDP.dir/token_bucket_map.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dalaoshe/network_demo/UDP/token_bucket_map.cpp -o CMakeFiles/UDP.dir/token_bucket_map.cpp.s
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.o.requires:
+CMakeFiles/UDP.dir/token_bucket_map.cpp.o.requires:
 
-.PHONY : CMakeFiles/UDP.dir/token_bucken_map.cpp.o.requires
+.PHONY : CMakeFiles/UDP.dir/token_bucket_map.cpp.o.requires
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.o.provides: CMakeFiles/UDP.dir/token_bucken_map.cpp.o.requires
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucken_map.cpp.o.provides.build
-.PHONY : CMakeFiles/UDP.dir/token_bucken_map.cpp.o.provides
+CMakeFiles/UDP.dir/token_bucket_map.cpp.o.provides: CMakeFiles/UDP.dir/token_bucket_map.cpp.o.requires
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket_map.cpp.o.provides.build
+.PHONY : CMakeFiles/UDP.dir/token_bucket_map.cpp.o.provides
 
-CMakeFiles/UDP.dir/token_bucken_map.cpp.o.provides.build: CMakeFiles/UDP.dir/token_bucken_map.cpp.o
+CMakeFiles/UDP.dir/token_bucket_map.cpp.o.provides.build: CMakeFiles/UDP.dir/token_bucket_map.cpp.o
 
 
 # Object files for target UDP
@@ -283,7 +283,7 @@ UDP_OBJECTS = \
 "CMakeFiles/UDP.dir/error_check.c.o" \
 "CMakeFiles/UDP.dir/do_server.c.o" \
 "CMakeFiles/UDP.dir/token_bucket.c.o" \
-"CMakeFiles/UDP.dir/token_bucken_map.cpp.o"
+"CMakeFiles/UDP.dir/token_bucket_map.cpp.o"
 
 # External object files for target UDP
 UDP_EXTERNAL_OBJECTS =
@@ -296,7 +296,7 @@ UDP: CMakeFiles/UDP.dir/do_client.c.o
 UDP: CMakeFiles/UDP.dir/error_check.c.o
 UDP: CMakeFiles/UDP.dir/do_server.c.o
 UDP: CMakeFiles/UDP.dir/token_bucket.c.o
-UDP: CMakeFiles/UDP.dir/token_bucken_map.cpp.o
+UDP: CMakeFiles/UDP.dir/token_bucket_map.cpp.o
 UDP: CMakeFiles/UDP.dir/build.make
 UDP: CMakeFiles/UDP.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable UDP"
@@ -315,7 +315,7 @@ CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/do_client.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/error_check.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/do_server.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/token_bucket.c.o.requires
-CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/token_bucken_map.cpp.o.requires
+CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/token_bucket_map.cpp.o.requires
 
 .PHONY : CMakeFiles/UDP.dir/requires
 

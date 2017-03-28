@@ -2,10 +2,10 @@
 // Created by dalaoshe on 17-3-22.
 //
 #include "do_server.h"
-#include "token_bucket.h"
+#include "server_util.h"
 static struct Token_Bucket output_token_bucket;
 static struct TokenBucketMap *ip_input_token_bucket;
-static int check_from_client(struct control_hdr* hdr) {// 基于源地址和序列号的首包丢弃策略，
+static int check_from_client(struct control_hdr* hdr) {// 确认请求包来自客户端
     uint32_t client_auth = clientHash(hdr->ts);
     if(client_auth != hdr->ts_hash) {
         fprintf(stderr,"not from client client:%u  server:%u\n",hdr->ts_hash,client_auth);
@@ -13,13 +13,12 @@ static int check_from_client(struct control_hdr* hdr) {// 基于源地址和序�
     }
     return 1;
 }
-static int check_hdr(struct control_hdr* hdr) {
+static int check_hdr(struct control_hdr* hdr) { // 检验请求包头信息
     int from_client = check_from_client(hdr);
     int no_time_out = checkTimeOut(hdr->ts);
     return from_client && no_time_out;
 }
 static int has_input_token(uint32_t ip) {
-    printf("check input_token\n");
     // Lazy方式情况过期的令牌桶记录
     clearTimeOutTokenBucket(ip_input_token_bucket);
     if(exist(ip_input_token_bucket, ip)) {
@@ -36,29 +35,7 @@ static int has_input_token(uint32_t ip) {
         return token;
     }
 }
-static void pack_response_data(struct RequestData* request, struct control_hdr* hdr, struct ResponseData* response) {
-    switch (request->cmd) {
-        case GET:
-            switch (request->identifier) {
-                case PI: {
-                    if((request->param & PARAM_P) && (request->param & PARAM_D))
-                        *((double *) response->data) = 3.14159265f;
-                    else
-                        *((double *) response->data) = 3.1415f;
-                    printf("recv request pi\n");
-                    break;
-                }
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
-    }
-    // 设置时间戳和对应的hash值
-    hdr->ts = time(NULL);
-    hdr->ts_hash = serverHash(hdr->ts);
-}
+
 void do_server() {
     struct sockaddr_in server_addr, client_addr;
     socklen_t len = sizeof(client_addr);
@@ -82,32 +59,42 @@ void do_server() {
     //初始化入口流量令牌桶(每个访问用户分配一个,)
     ip_input_token_bucket = initTokenBucket(ip_input_token_bucket);
 
-    printf("server start\n");
+    //初始化接/发数据缓存
+    int flags = 0;
+    struct unp_in_pktinfo info;
+    struct control_hdr hdr;
+    struct RequestData request;
+    struct ResponseData response[MAX_RESPONSE_PACKET];
+
+    printf("<---- SERVER START..... ---->\n\n");
     while (1) {
-        int flags = 0;
-        struct unp_in_pktinfo info;
-        struct control_hdr hdr;
-        struct RequestData request;
-        struct ResponseData response;
-        memset(&response,0,sizeof(response));
+
+        // 每次接收前清空缓存
+        memset(response,0,sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
         memset(&request,0,sizeof(request));
         memset(&hdr,0,sizeof(hdr));
         memset(&info,0,sizeof(info));
+        // 接收请求
+        if(Recvfrom_flags(sockfd, &hdr, sizeof(hdr), &request, sizeof(request), &flags, (SA*)&client_addr, &len, &info)
+           < (sizeof(hdr) + sizeof(request)))// 收到小于协议长度的包,不再处理
+            continue;
+        printf("\n<---- GET AN REQUEST FROM %u ---->\n",client_addr.sin_addr.s_addr);
 
-        Recvfrom_flags(sockfd, &hdr, sizeof(hdr), &request, sizeof(request), &flags, (SA*)&client_addr, &len, &info);
-        printf("\nrequest\n");
-        if(check_hdr(&hdr)) { //检验合法性
+        if(check_hdr(&hdr)) { // 通过消息头, 检验请求合法性
             if(has_input_token(client_addr.sin_addr.s_addr)) {//令牌桶 检验该ip是否有进入流量资格
                 if (getToken(&output_token_bucket)) {//令牌桶 检验服务器是否还有出口流量
-                    pack_response_data(&request, &hdr, &response);// 根据请求打包回复的包头和数据
-                    Sendto(sockfd, &hdr, sizeof(hdr), &response, sizeof(response), (SA *) &client_addr, len);
-                    printf("leafover token=%u\n", output_token_bucket.tokens);
+                    int pkt_len = pack_response_data(&request, response);// 根据请求打包回复的分组序列
+                    for(int i = 0 ; i < pkt_len; ++i) {// 将分组逐一发送
+                        pack_response_hdr(&hdr, pkt_len, (pkt_len-1-i)); // 设置每个分组的对应消息头
+                        Sendto(sockfd, &hdr, sizeof(hdr), response+i, sizeof(struct ResponseData), (SA *) &client_addr, len);
+                    }
+                    printf("INFO: there are tokens=%u left\n", output_token_bucket.tokens);
                 } else {
-                    printf("no token wait ! %u\n", output_token_bucket.tokens);
+                    printf("REJECT: no output token wait ! %u\n", output_token_bucket.tokens);
                 }
             }
             else {
-                printf("no input token wait\n");
+                printf("REJECT: no input token wait\n");
             }
         }
     }

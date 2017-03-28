@@ -7,7 +7,7 @@ void printRequest(struct RequestData* data) {
     printf("request %u %u %u \n",data->cmd, data->identifier, data->param);
 }
 uint32_t getCmd(char cmd_str[]) {
-    printf("cmd %s1\n",cmd_str);
+   // printf("cmd %s1\n",cmd_str);
     if((strcmp(cmd_str,"GET") == 0)) {
       //  printf("CMD GET\n");
         return GET;
@@ -16,7 +16,7 @@ uint32_t getCmd(char cmd_str[]) {
     return ERROR_CMD;
 }
 uint32_t getIdentifier(char identifier[]) {
-    printf("identif %s\n",identifier);
+  //  printf("identif %s\n",identifier);
     if(strcmp(identifier,"PI") == 0) {
         return PI;
     }
@@ -24,7 +24,7 @@ uint32_t getIdentifier(char identifier[]) {
     return ERROR_IDENTIFIER;
 }
 u_int8_t getParam(char param[]) {
-    printf("param %s\n",param);
+   // printf("param %s\n",param);
     if(strcmp(param,"-l=10") == 0) {
         //printf("param %s\n",param);
         return (PARAM_P | PARAM_D);
@@ -131,7 +131,13 @@ uint32_t pack_request_data(char cmd_str[], struct RequestData* data) {
     //mprintf("\n");
     return n;
 }
-
+struct ResponseData* getResponseById(struct ResponseData* base, int pkt_len, int id) {
+    for(int i = 0; i < pkt_len; ++i) {
+        struct ResponseData* data = base+i;
+        if(data->response_no == id) return data;
+    }
+    return base;
+}
 void do_client() {
 
 
@@ -155,18 +161,29 @@ void do_client() {
     if(!(file = fopen(name, "r"))) {
         fprintf(stderr, "open file:%s failed \n", name);
     }
-    int n = fread(cmd_str,1,MAX_LEN,file);
+    size_t n = fread(cmd_str,1,MAX_LEN,file);
     int index = 0;
-
+    struct ResponseData responseData[MAX_RESPONSE_PACKET];
+    struct RequestData requestData;
     while(index < n) {
-        struct RequestData requestData;
-        struct ResponseData responseData;
-        memset(&responseData, 0, sizeof(responseData));
-        printf("read request: %s\n",cmd_str);
+
+        memset(responseData, 0, sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
+        printf("YOU ARE SENDING REQUEST: \n%s\n...........\n",cmd_str);
         index += pack_request_data(cmd_str+index, &requestData);
-        printRequest(&requestData);
-        Dg_send_recv(sockfd, &requestData, sizeof(requestData), &responseData, sizeof(responseData), (SA*)&servaddr, len);
-        printf("recv server: %lf \n", *((double*)(responseData.data)));
+
+        int resp_pkt_len = Client_send_recv(sockfd, &requestData, sizeof(requestData), responseData, sizeof(struct ResponseData), (SA*)&servaddr, len);
+        if(resp_pkt_len < 0) {
+            printf("ERROR: RECV %d PKT, ERROR\n",resp_pkt_len);
+        }
+        else {
+            printf("INFO: RECV %d PKT FROM SERVER\nGET NUMBER: ", resp_pkt_len);
+            for(int i = 0; i < resp_pkt_len; ++i) {
+                struct ResponseData *response = getResponseById(responseData, resp_pkt_len, i);
+                for(int j = 0; j < RESPONSE_LEN; ++j)
+                    printf("%c",response->data[j]);
+            }
+            printf("\nOVER\n");
+        }
 
         sleep(10);
     }

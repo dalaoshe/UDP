@@ -92,7 +92,6 @@ recvfrom_flags(int fd, void* recvhdr, size_t hdr_bytes, void *ptr, size_t payloa
 	return(n);
 #endif	/* HAVE_MSGHDR_MSG_CONTROL */
 }
-/* end recvfrom_flags2 */
 
 ssize_t
 Recvfrom_flags(int fd,void* recv_hdr, size_t hdr_nbytes, void *ptr, size_t payload_nbytes, int *flagsp,
@@ -101,9 +100,9 @@ Recvfrom_flags(int fd,void* recv_hdr, size_t hdr_nbytes, void *ptr, size_t paylo
     ssize_t		n = 0;
     n = recvfrom_flags(fd, recv_hdr, hdr_nbytes, ptr, payload_nbytes, flagsp, sa, salenptr, pktp);
     if (n < 0)
-        printf("recvfrom_flags error\n");
+        printf("ERROR: RECV AN  ERROR PKT WHOSE LEN < 0 \n");
     if (n == 0)
-        printf("recvfrom_flags an empty udp packet\n");
+        printf("WARNING: RECV AN EMPTY UDP PKT\n");
     return(n);
 }
 
@@ -128,10 +127,10 @@ Sendto(int fd,void* send_hdr, size_t hdr_nbytes, void *ptr, size_t nbytes,
     msg.msg_flags = 0;
 
     if((n = sendmsg(fd, &msg, 0)) < 0) {
-        printf("send error \n");
+        printf("\nERROR: SEND PKT ERROR!\n");
     }
     if(n == 0) {
-        printf("send an empty udp packet\n");
+        printf("\nWARNING: SEND AN EMPTY UDP PKT\n");
     }
     return n;
 }
@@ -157,6 +156,5 @@ uint32_t serverHash(uint32_t tv)
 
 int checkTimeOut(time_t tv) {
     time_t t = time(NULL);
-    printf("time diff %u %u %u\n",t-tv, tv, t);
     return (t - tv) < 2;
 }
