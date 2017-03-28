@@ -1,6 +1,7 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
   "C"
+  "CXX"
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
@@ -11,11 +12,20 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/dalaoshe/network_demo/UDP/main.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/main.c.o"
   "/home/dalaoshe/network_demo/UDP/recvfrom_flags.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/recvfrom_flags.c.o"
   "/home/dalaoshe/network_demo/UDP/rtt.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/rtt.c.o"
+  "/home/dalaoshe/network_demo/UDP/token_bucket.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucket.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  )
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/dalaoshe/network_demo/UDP/token_bucken_map.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucken_map.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
   )
 
 # Targets to which this target links.

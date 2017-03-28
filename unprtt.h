@@ -54,6 +54,7 @@ ssize_t	Dg_send_recv(int, void *, size_t, void *, size_t,
                          SA *, socklen_t);
 uint32_t clientHash(uint32_t tv);
 uint32_t serverHash(uint32_t tv);
+int checkTimeOut(time_t tv);
 /* hash */
 #define CLIENT_AUTH_MAGIC 1333
 #define CLIENT_HASH_MAGIC 23332333
@@ -73,7 +74,7 @@ uint32_t serverHash(uint32_t tv);
 #define ERROR_IDENTIFIER 0xff
 struct control_hdr {
     uint32_t	seq;	/* sequence # */
-    uint32_t	ts;		/* timestamp when sent */
+    time_t	    ts;		/* timestamp when sent */
     uint32_t    ts_hash;
     uint32_t    magic;  /* magic valid */
     uint16_t    flags;  /* protocol flags */

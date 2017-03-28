@@ -11,7 +11,7 @@ int		rtt_d_flag = 0;		/* debug flag; can be set by caller */
 void
 Gettimeofday(struct timeval *tv, void *foo)
 {
-    if (gettimeofday(tv, foo) == -1)
+    if (gettimeofday(tv, NULL) == -1)
         //err_sys("gettimeofday error");
     return;
 }

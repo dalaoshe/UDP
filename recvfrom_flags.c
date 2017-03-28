@@ -154,3 +154,9 @@ uint32_t serverHash(uint32_t tv)
     key = key % SERVER_HASH_MAGIC;
     return key;
 }
+
+int checkTimeOut(time_t tv) {
+    time_t t = time(NULL);
+    printf("time diff %u %u %u\n",t-tv, tv, t);
+    return (t - tv) < 2;
+}

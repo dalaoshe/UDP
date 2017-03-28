@@ -22,7 +22,8 @@ static int check_from_server(struct control_hdr* hdr) {// 基于时间戳的服�
 
 static int check_recv_hdr(struct control_hdr* hdr) {
     int from_server = check_from_server(hdr);
-    return from_server;
+    int no_time_out = checkTimeOut(hdr->ts);
+    return from_server && no_time_out;
 }
 ssize_t
 dg_send_recv(int fd,
@@ -50,7 +51,7 @@ dg_send_recv(int fd,
     fprintf(stderr, "send %4d \n: ", sendhdr.seq);
 
 #endif
-    sendhdr.ts = rtt_ts(&rttinfo);
+    sendhdr.ts = time(NULL);
     sendhdr.ts_hash = clientHash(sendhdr.ts);
 
     // send request
@@ -83,10 +84,10 @@ dg_send_recv(int fd,
         int flags = 0;
         printf("recv wait\n");
         n = Recvfrom_flags(fd, &recvhdr, sizeof(recvhdr), inbuff, inbytes, &flags, NULL, NULL, &info);
-        int check_server = check_from_server(&recvhdr);
-        if(!check_server) {
-            fprintf(stderr, "not valid server!!!! exit\n");
-            exit(0);
+        int check_hdr = check_recv_hdr(&recvhdr);
+        if(!check_hdr) {
+            fprintf(stderr, "not valid hdr!!!! discard\n");
+            continue;
         }
 #ifdef	RTT_DEBUG
         printf("recv seq %4d\n", recvhdr.seq);
