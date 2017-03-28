@@ -11,6 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="a74ddfc7-a934-4821-81f9-6a7f3592cb0a" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/token_bucket.h" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/token_bucket_map.cpp" />
@@ -33,6 +34,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rtt.c" afterPath="$PROJECT_DIR$/rtt.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unprtt.h" afterPath="$PROJECT_DIR$/unprtt.h" />
     </list>
+
     <ignored path="UDP.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,11 +56,13 @@
       <file leaf-file-name="do_server.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/do_server.c">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="-877">
               <caret line="38" column="7" lean-forward="false" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
               <folding>
                 <element signature="e#41#63#0" expanded="true" />
               </folding>
+
             </state>
           </provider>
         </entry>
@@ -66,11 +70,13 @@
       <file leaf-file-name="token_bucket.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/token_bucket.h">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="401">
               <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#97#114#0" expanded="true" />
               </folding>
+
             </state>
           </provider>
         </entry>
@@ -78,13 +84,16 @@
       <file leaf-file-name="token_bucket.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/token_bucket.c">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="72">
               <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+
       <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/test.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -97,6 +106,7 @@
       </file>
       <file leaf-file-name="unprtt.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/unprtt.h">
+
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
               <caret line="29" column="14" lean-forward="false" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
@@ -143,6 +153,7 @@
         <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/test.txt" />
         <option value="$PROJECT_DIR$/do_client.c" />
+
         <option value="$PROJECT_DIR$/unprtt.h" />
         <option value="$PROJECT_DIR$/bin/test.txt" />
         <option value="$PROJECT_DIR$/dg_send_recv.c" />
@@ -153,6 +164,7 @@
         <option value="$PROJECT_DIR$/token_bucket.h" />
         <option value="$PROJECT_DIR$/token_bucket_map.cpp" />
         <option value="$PROJECT_DIR$/do_server.c" />
+
       </list>
     </option>
   </component>
@@ -443,27 +455,33 @@
       <workItem from="1490109684942" duration="10689000" />
       <workItem from="1490162207271" duration="13606000" />
       <workItem from="1490280249573" duration="41000" />
+
       <workItem from="1490327058096" duration="5386000" />
       <workItem from="1490534265263" duration="5235000" />
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="57614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="false" />
+
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18808605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32778355" sideWeight="0.34583563" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4958632" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32778355" sideWeight="0.6541644" order="7" side_tool="false" content_ui="tabs" />
+
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34246576" sideWeight="0.49701938" order="7" side_tool="false" content_ui="tabs" />
@@ -498,6 +516,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+
     <entry file="file://$PROJECT_DIR$/recvfrom_flags.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -784,6 +803,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/unprtt.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -819,6 +839,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dg_send_recv.c">
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-378">
           <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
@@ -860,6 +881,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/token_bucket_map.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -874,6 +896,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+
           <folding />
         </state>
       </provider>
