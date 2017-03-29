@@ -55,6 +55,8 @@ struct TokenBucketMap* initTokenBucket(struct TokenBucketMap* t_map) {
 
 void clearTimeOutTokenBucket(struct TokenBucketMap* t_map) {
     pthread_mutex_lock(&t_map->input_token_bucket_map_mutex);
+    printf("check clear\n");
+    sleep(2);
     std::map<uint32_t, Token_Bucket*>::iterator it;
     for(it = t_map->ip_token_bucket.begin(); it != t_map->ip_token_bucket.end(); ++it) {
         Token_Bucket* bucket = it->second;
@@ -64,5 +66,6 @@ void clearTimeOutTokenBucket(struct TokenBucketMap* t_map) {
                 deleteTokenBucket(t_map,it->first);
         }
     }
+    printf("check ok\n");
     pthread_mutex_unlock(&t_map->input_token_bucket_map_mutex);
 }

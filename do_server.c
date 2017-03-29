@@ -29,6 +29,7 @@ static int check_hdr(struct control_hdr* hdr) { // 检验请求包头信息
 static int has_input_token(uint32_t ip) {
     // Lazy方式情况过期的令牌桶记录
     clearTimeOutTokenBucket(ip_input_token_bucket);
+
     if(exist(ip_input_token_bucket, ip)) {
         int token = getToken(getTokenBucket(ip_input_token_bucket,ip));
         if(!token) {
@@ -53,7 +54,9 @@ void* do_response(void* argv) {
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&opt, sizeof(opt));
     Bind_Socket(sockfd, (struct sockaddr *) &server_addr, sizeof(struct sockaddr_in));
 
-    printf("\n<---- do response %u ---->\n",para->client_addr.sin_addr.s_addr);
+    printf("\n<---- do response sleep 3 first%u tid %lu---->\n",para->client_addr.sin_addr.s_addr,pthread_self());
+
+    sleep(3);
     struct ResponseData response[MAX_RESPONSE_PACKET];
     memset(response,0,sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
 
