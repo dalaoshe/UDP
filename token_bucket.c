@@ -3,13 +3,17 @@
 //
 #include "token_bucket.h"
 int getToken(struct Token_Bucket* bucket) {
+
     if(bucket == NULL)
         return 0;
+    pthread_mutex_lock(&bucket->token_bucket_mutex);
     updateToken(bucket);
     if(bucket->tokens > 0) {
         bucket->tokens--;
+        pthread_mutex_unlock(&bucket->token_bucket_mutex);
         return 1;
     }
+    pthread_mutex_unlock(&bucket->token_bucket_mutex);
     return 0;
 }
 

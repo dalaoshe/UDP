@@ -1,7 +1,7 @@
 #include	"unprtt.h"
 #include	<setjmp.h>
 
-//#define	RTT_DEBUG
+#define	RTT_DEBUG
 
 static struct rtt_info   rttinfo;
 static int	rttinit = 0;
@@ -19,6 +19,11 @@ static int check_from_server(struct control_hdr* hdr) {// 基于时间戳的服�
     return 1;
 }
 static int check_recv_seq(struct control_hdr* hdr) {
+    if(hdr->seq != sendhdr.seq) {
+#ifdef RTT_DEBUG
+        printf("hdr->seq != send %d\n",hdr->seq);
+#endif
+    }
     return hdr->seq == sendhdr.seq;
 }
 static int check_recv_hdr(struct control_hdr* hdr) {

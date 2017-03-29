@@ -7,6 +7,7 @@
 
 #include <time.h>
 #include <stdint.h>
+#include "UDPThread.h"
 
 #define SERVER_OUTPUT_CAPACITY 1<<15
 #define CLIENT_INPUT_CAPACITY (SERVER_OUTPUT_CAPACITY >> 10)
@@ -19,7 +20,9 @@ struct Token_Bucket{
     __uint16_t token_fill_rate; // n/secondes
     __uint16_t capacity;
     __uint16_t tokens;
+    pthread_mutex_t token_bucket_mutex;
 };
+
 struct TokenBucketMap;
 int getToken(struct Token_Bucket*);
 void updateToken(struct Token_Bucket*);
