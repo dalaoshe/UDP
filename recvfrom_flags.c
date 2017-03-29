@@ -156,5 +156,5 @@ uint32_t serverHash(uint32_t tv)
 
 int checkTimeOut(time_t tv) {
     time_t t = time(NULL);
-    return (t - tv) < 2;
+    return (t - tv) < 50;
 }

@@ -148,7 +148,7 @@ void do_client() {
 
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERV_PORT);
-    int res = inet_pton(AF_INET, "59.66.134.48", &servaddr.sin_addr);
+    int res = inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
     //servaddr.sin_addr.s_addr = htonl("59.66.134.48");
     socklen_t len = sizeof(servaddr);
 

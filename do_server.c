@@ -8,7 +8,7 @@
 static struct Token_Bucket output_token_bucket;
 static struct TokenBucketMap *ip_input_token_bucket;
 static struct sockaddr_in server_addr;
-
+static struct ThreadPool* threadPool;
 static pthread_mutex_t thread_counter_mutex = PTHREAD_MUTEX_INITIALIZER;
 static uint32_t thread_counter;
 
@@ -56,7 +56,7 @@ void* do_response(void* argv) {
 
     printf("\n<---- do response sleep 3 first%u tid %lu---->\n",para->client_addr.sin_addr.s_addr,pthread_self());
 
-    sleep(3);
+    //sleep(3);
     struct ResponseData response[MAX_RESPONSE_PACKET];
     memset(response,0,sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
 
@@ -81,7 +81,12 @@ void* do_response(void* argv) {
         }
     }
     close(sockfd);
-    dec_counter(&thread_counter, &thread_counter_mutex, 0);
+
+    pthread_t pid = pthread_self();
+    printf("\n<---- free tid %lu---->\n",pid);
+    freeThread(threadPool, pid);
+    pthread_exit(0);
+
     return (NULL);
 }
 
@@ -108,6 +113,8 @@ void do_server() {
 
     //初始化入口流量令牌桶(每个访问用户分配一个,)
     ip_input_token_bucket = initTokenBucket(ip_input_token_bucket);
+    //初始化线程池
+    threadPool = initThreadPool(threadPool, MAX_SERVER_THREAD_NUMBER);
 
     printf("<---- SERVER START..... ---->\n\n");
     while (1) {
@@ -126,14 +133,17 @@ void do_server() {
         memset(&info,0,sizeof(info));
         memset(&client_addr, 0, sizeof(client_addr));
         // 接收请求
+        printf("\n2next\n");
         if(Recvfrom_flags(sockfd, &hdr, sizeof(hdr), &request, sizeof(request), &flags, (SA*)&client_addr, &len, &info)
            < (sizeof(hdr) + sizeof(request)))// 收到小于协议长度的包,不再处理
             continue;
         printf("\n<---- GET AN REQUEST FROM %u ---->\n",client_addr.sin_addr.s_addr);
-        while ((inc_counter(&thread_counter, &thread_counter_mutex, MAX_SERVER_THREAD_NUMBER)) == -1) {
-            printf("WAIT THREAD\n");
+
+        pthread_t *tid = getIdleThread(threadPool);
+        if(tid == 0) {// 线程池满不处理请求，客户端自动超时重传
+            printf("no thread\n");
+            continue;
         }
-        pthread_t tid;
         struct do_response_para para;
         memset(&para,0,sizeof(struct do_response_para));
         para.client_addr = client_addr;
@@ -141,8 +151,8 @@ void do_server() {
         para.request = request;
         para.info = info;
         para.len = len;
-        pthread_create(&tid, NULL, &do_response, (void*)&para);
-
+        pthread_create(tid, NULL, &do_response, (void*)&para);
+        printf("\n1next\n");
     }
 }
 

@@ -17,4 +17,8 @@ struct do_response_para {
             socklen_t len;
     struct unp_in_pktinfo info;
 };
+struct ThreadPool;
+struct ThreadPool* initThreadPool(struct ThreadPool* threadPool, int threads_number);
+pthread_t* getIdleThread(struct ThreadPool* threadPool);
+void freeThread(struct ThreadPool* threadPool, pthread_t pid);
 #endif //UDP_UDPTHREAD_H
