@@ -41,14 +41,14 @@ dg_send_recv(int fd,
         rtt_d_flag = 1;
     }
 
-    sendhdr.seq++;
+
     struct unp_in_pktinfo info;
 
     signal(SIGALRM, sig_alrm);
     rtt_newpack(&rttinfo);		/* initialize for this packet */
 
     sendagain:
-
+    sendhdr.seq++;
 #ifdef	RTT_DEBUG
     fprintf(stderr, "send %4d \n: ", sendhdr.seq);
 #endif
@@ -95,7 +95,7 @@ dg_send_recv(int fd,
 #ifdef	RTT_DEBUG
         printf("recv seq %4d, reso_no %d , need_resp_num %d\n", recvhdr.seq, resp_count, resp_to_recv);
 #endif
-    } while (resp_count < resp_to_recv);
+    } while (resp_count < resp_to_recv); // 收到的同一个请求seq的回复分组与服务器实际发送的分组数量一致,则接收完毕
     // 取消定时器
     tv.it_value.tv_sec = tv.it_value.tv_usec = 0;
     tv.it_interval = tv.it_value;

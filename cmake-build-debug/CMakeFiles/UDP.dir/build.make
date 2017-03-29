@@ -105,28 +105,28 @@ CMakeFiles/UDP.dir/recvfrom_flags.c.o.provides: CMakeFiles/UDP.dir/recvfrom_flag
 CMakeFiles/UDP.dir/recvfrom_flags.c.o.provides.build: CMakeFiles/UDP.dir/recvfrom_flags.c.o
 
 
-CMakeFiles/UDP.dir/dg_send_recv.c.o: CMakeFiles/UDP.dir/flags.make
-CMakeFiles/UDP.dir/dg_send_recv.c.o: ../dg_send_recv.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/UDP.dir/dg_send_recv.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/UDP.dir/dg_send_recv.c.o   -c /home/dalaoshe/network_demo/UDP/dg_send_recv.c
+CMakeFiles/UDP.dir/client_send_recv.c.o: CMakeFiles/UDP.dir/flags.make
+CMakeFiles/UDP.dir/client_send_recv.c.o: ../client_send_recv.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/UDP.dir/client_send_recv.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/UDP.dir/client_send_recv.c.o   -c /home/dalaoshe/network_demo/UDP/client_send_recv.c
 
-CMakeFiles/UDP.dir/dg_send_recv.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/UDP.dir/dg_send_recv.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dalaoshe/network_demo/UDP/dg_send_recv.c > CMakeFiles/UDP.dir/dg_send_recv.c.i
+CMakeFiles/UDP.dir/client_send_recv.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/UDP.dir/client_send_recv.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dalaoshe/network_demo/UDP/client_send_recv.c > CMakeFiles/UDP.dir/client_send_recv.c.i
 
-CMakeFiles/UDP.dir/dg_send_recv.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/UDP.dir/dg_send_recv.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dalaoshe/network_demo/UDP/dg_send_recv.c -o CMakeFiles/UDP.dir/dg_send_recv.c.s
+CMakeFiles/UDP.dir/client_send_recv.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/UDP.dir/client_send_recv.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dalaoshe/network_demo/UDP/client_send_recv.c -o CMakeFiles/UDP.dir/client_send_recv.c.s
 
-CMakeFiles/UDP.dir/dg_send_recv.c.o.requires:
+CMakeFiles/UDP.dir/client_send_recv.c.o.requires:
 
-.PHONY : CMakeFiles/UDP.dir/dg_send_recv.c.o.requires
+.PHONY : CMakeFiles/UDP.dir/client_send_recv.c.o.requires
 
-CMakeFiles/UDP.dir/dg_send_recv.c.o.provides: CMakeFiles/UDP.dir/dg_send_recv.c.o.requires
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/dg_send_recv.c.o.provides.build
-.PHONY : CMakeFiles/UDP.dir/dg_send_recv.c.o.provides
+CMakeFiles/UDP.dir/client_send_recv.c.o.provides: CMakeFiles/UDP.dir/client_send_recv.c.o.requires
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.o.provides.build
+.PHONY : CMakeFiles/UDP.dir/client_send_recv.c.o.provides
 
-CMakeFiles/UDP.dir/dg_send_recv.c.o.provides.build: CMakeFiles/UDP.dir/dg_send_recv.c.o
+CMakeFiles/UDP.dir/client_send_recv.c.o.provides.build: CMakeFiles/UDP.dir/client_send_recv.c.o
 
 
 CMakeFiles/UDP.dir/rtt.c.o: CMakeFiles/UDP.dir/flags.make
@@ -277,7 +277,7 @@ CMakeFiles/UDP.dir/token_bucket_map.cpp.o.provides.build: CMakeFiles/UDP.dir/tok
 UDP_OBJECTS = \
 "CMakeFiles/UDP.dir/main.c.o" \
 "CMakeFiles/UDP.dir/recvfrom_flags.c.o" \
-"CMakeFiles/UDP.dir/dg_send_recv.c.o" \
+"CMakeFiles/UDP.dir/client_send_recv.c.o" \
 "CMakeFiles/UDP.dir/rtt.c.o" \
 "CMakeFiles/UDP.dir/do_client.c.o" \
 "CMakeFiles/UDP.dir/error_check.c.o" \
@@ -290,7 +290,7 @@ UDP_EXTERNAL_OBJECTS =
 
 UDP: CMakeFiles/UDP.dir/main.c.o
 UDP: CMakeFiles/UDP.dir/recvfrom_flags.c.o
-UDP: CMakeFiles/UDP.dir/dg_send_recv.c.o
+UDP: CMakeFiles/UDP.dir/client_send_recv.c.o
 UDP: CMakeFiles/UDP.dir/rtt.c.o
 UDP: CMakeFiles/UDP.dir/do_client.c.o
 UDP: CMakeFiles/UDP.dir/error_check.c.o
@@ -309,7 +309,7 @@ CMakeFiles/UDP.dir/build: UDP
 
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/main.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/recvfrom_flags.c.o.requires
-CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/dg_send_recv.c.o.requires
+CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/client_send_recv.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/rtt.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/do_client.c.o.requires
 CMakeFiles/UDP.dir/requires: CMakeFiles/UDP.dir/error_check.c.o.requires

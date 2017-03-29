@@ -84,7 +84,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/dalaoshe/network_demo/UDP/dg_send_recv.c">
+		<Unit filename="/home/dalaoshe/network_demo/UDP/client_send_recv.c">
 			<Option target="UDP"/>
 		</Unit>
 		<Unit filename="/home/dalaoshe/network_demo/UDP/do_client.c">

@@ -24,7 +24,7 @@ static int getNeedPackets(u_int8_t params) {
     if((params & PARAM_P) && (params & PARAM_D))
         response_packet = 10;
     else
-        response_packet = 1;
+        response_packet = 4;
     return response_packet;
 }
 

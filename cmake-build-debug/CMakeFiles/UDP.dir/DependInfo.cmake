@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dalaoshe/network_demo/UDP/dg_send_recv.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/dg_send_recv.c.o"
+  "/home/dalaoshe/network_demo/UDP/client_send_recv.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/client_send_recv.c.o"
   "/home/dalaoshe/network_demo/UDP/do_client.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_client.c.o"
   "/home/dalaoshe/network_demo/UDP/do_server.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_server.c.o"
   "/home/dalaoshe/network_demo/UDP/error_check.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/error_check.c.o"

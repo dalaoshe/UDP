@@ -123,32 +123,32 @@ UDP/fast:
 	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/build
 .PHONY : UDP/fast
 
-dg_send_recv.o: dg_send_recv.c.o
+client_send_recv.o: client_send_recv.c.o
 
-.PHONY : dg_send_recv.o
+.PHONY : client_send_recv.o
 
 # target to build an object file
-dg_send_recv.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/dg_send_recv.c.o
-.PHONY : dg_send_recv.c.o
+client_send_recv.c.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.o
+.PHONY : client_send_recv.c.o
 
-dg_send_recv.i: dg_send_recv.c.i
+client_send_recv.i: client_send_recv.c.i
 
-.PHONY : dg_send_recv.i
+.PHONY : client_send_recv.i
 
 # target to preprocess a source file
-dg_send_recv.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/dg_send_recv.c.i
-.PHONY : dg_send_recv.c.i
+client_send_recv.c.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.i
+.PHONY : client_send_recv.c.i
 
-dg_send_recv.s: dg_send_recv.c.s
+client_send_recv.s: client_send_recv.c.s
 
-.PHONY : dg_send_recv.s
+.PHONY : client_send_recv.s
 
 # target to generate assembly for a file
-dg_send_recv.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/dg_send_recv.c.s
-.PHONY : dg_send_recv.c.s
+client_send_recv.c.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.s
+.PHONY : client_send_recv.c.s
 
 do_client.o: do_client.c.o
 
@@ -375,9 +375,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... UDP"
-	@echo "... dg_send_recv.o"
-	@echo "... dg_send_recv.i"
-	@echo "... dg_send_recv.s"
+	@echo "... client_send_recv.o"
+	@echo "... client_send_recv.i"
+	@echo "... client_send_recv.s"
 	@echo "... do_client.o"
 	@echo "... do_client.i"
 	@echo "... do_client.s"
