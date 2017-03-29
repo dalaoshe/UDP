@@ -8,7 +8,7 @@
 static struct Token_Bucket output_token_bucket;
 static struct TokenBucketMap *ip_input_token_bucket;
 static struct sockaddr_in server_addr;
-static pthread_t threads[MAX_SERVER_THREAD_NUMBER];
+
 static pthread_mutex_t thread_counter_mutex = PTHREAD_MUTEX_INITIALIZER;
 static uint32_t thread_counter;
 
@@ -88,7 +88,7 @@ void do_server() {
 
 
     server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     server_addr.sin_port = htons(SERV_PORT);
 
     int sockfd = Socket(AF_INET, SOCK_DGRAM, 0);
@@ -127,11 +127,10 @@ void do_server() {
            < (sizeof(hdr) + sizeof(request)))// 收到小于协议长度的包,不再处理
             continue;
         printf("\n<---- GET AN REQUEST FROM %u ---->\n",client_addr.sin_addr.s_addr);
-        int index = -1;
-        while ((index = inc_counter(&thread_counter, &thread_counter_mutex, MAX_SERVER_THREAD_NUMBER)) == -1) {
+        while ((inc_counter(&thread_counter, &thread_counter_mutex, MAX_SERVER_THREAD_NUMBER)) == -1) {
             printf("WAIT THREAD\n");
         }
-        pthread_t tid = threads[index];
+        pthread_t tid;
         struct do_response_para para;
         memset(&para,0,sizeof(struct do_response_para));
         para.client_addr = client_addr;
