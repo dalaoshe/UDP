@@ -1,25 +1,18 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "C"
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_C
-  "/home/dalaoshe/network_demo/UDP/client_send_recv.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/client_send_recv.c.o"
-  "/home/dalaoshe/network_demo/UDP/do_client.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_client.c.o"
-  "/home/dalaoshe/network_demo/UDP/do_server.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_server.c.o"
-  "/home/dalaoshe/network_demo/UDP/error_check.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/error_check.c.o"
-  "/home/dalaoshe/network_demo/UDP/main.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/main.c.o"
-  "/home/dalaoshe/network_demo/UDP/recvfrom_flags.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/recvfrom_flags.c.o"
-  "/home/dalaoshe/network_demo/UDP/rtt.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/rtt.c.o"
-  "/home/dalaoshe/network_demo/UDP/token_bucket.c" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucket.c.o"
-  )
-set(CMAKE_C_COMPILER_ID "GNU")
-
-# The include file search paths:
-set(CMAKE_C_TARGET_INCLUDE_PATH
-  )
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/dalaoshe/network_demo/UDP/UDPThread.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/UDPThread.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/client_send_recv.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/client_send_recv.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/do_client.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_client.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/do_server.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/do_server.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/error_check.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/error_check.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/main.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/main.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/recvfrom_flags.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/recvfrom_flags.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/rtt.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/rtt.cpp.o"
+  "/home/dalaoshe/network_demo/UDP/token_bucket.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucket.cpp.o"
   "/home/dalaoshe/network_demo/UDP/token_bucket_map.cpp" "/home/dalaoshe/network_demo/UDP/cmake-build-debug/CMakeFiles/UDP.dir/token_bucket_map.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

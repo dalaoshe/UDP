@@ -84,7 +84,8 @@ int checkTimeOut(time_t tv);
 /* 数据格式 */
 struct control_hdr { // 消息头
     uint32_t	seq;	/* 消息序列号 */
-    time_t	    ts;		/* 时间错 */
+    time_t	    ts;		/* 时间戳 */
+    uint32_t    rtt_ts; /* 更新rtt */
     uint32_t    ts_hash;/* 时间戳对应的HASH值,验证程序来源 */
     uint16_t    resp_len;  /* 指示回复包一共有几个分组 */
     /* 以下子段尚未用到 */

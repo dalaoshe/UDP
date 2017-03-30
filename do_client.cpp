@@ -186,6 +186,6 @@ void do_client() {
             printf("\nOVER\n");
         }
 
-        sleep(10);
+        sleep(2);
     }
 }

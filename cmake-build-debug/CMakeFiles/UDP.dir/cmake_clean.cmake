@@ -1,18 +1,19 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/UDP.dir/main.c.o"
-  "CMakeFiles/UDP.dir/recvfrom_flags.c.o"
-  "CMakeFiles/UDP.dir/client_send_recv.c.o"
-  "CMakeFiles/UDP.dir/rtt.c.o"
-  "CMakeFiles/UDP.dir/do_client.c.o"
-  "CMakeFiles/UDP.dir/error_check.c.o"
-  "CMakeFiles/UDP.dir/do_server.c.o"
-  "CMakeFiles/UDP.dir/token_bucket.c.o"
+  "CMakeFiles/UDP.dir/main.cpp.o"
+  "CMakeFiles/UDP.dir/recvfrom_flags.cpp.o"
+  "CMakeFiles/UDP.dir/client_send_recv.cpp.o"
+  "CMakeFiles/UDP.dir/rtt.cpp.o"
+  "CMakeFiles/UDP.dir/do_client.cpp.o"
+  "CMakeFiles/UDP.dir/error_check.cpp.o"
+  "CMakeFiles/UDP.dir/do_server.cpp.o"
+  "CMakeFiles/UDP.dir/token_bucket.cpp.o"
   "CMakeFiles/UDP.dir/token_bucket_map.cpp.o"
+  "CMakeFiles/UDP.dir/UDPThread.cpp.o"
   "UDP.pdb"
   "UDP"
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang C CXX)
+foreach(lang CXX)
   include(CMakeFiles/UDP.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

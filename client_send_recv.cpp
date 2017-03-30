@@ -1,7 +1,7 @@
 #include	"unprtt.h"
 #include	<setjmp.h>
 
-#define	RTT_DEBUG
+//#define	RTT_DEBUG
 
 static struct rtt_info   rttinfo;
 static int	rttinit = 0;
@@ -39,6 +39,8 @@ dg_send_recv(int fd,
              SA *destaddr, socklen_t destlen)
 {
     ssize_t			n;
+    //
+    sendhdr.seq = time(NULL) % 1<<31;
 
     if (rttinit == 0) {
         rtt_init(&rttinfo);		/* first time we're called */
@@ -60,6 +62,7 @@ dg_send_recv(int fd,
 
     sendhdr.ts = time(NULL);
     sendhdr.ts_hash = clientHash(sendhdr.ts);
+    sendhdr.rtt_ts = rtt_ts(&rttinfo);
 
     // 发送请求数据
     int resp_count = 0, resp_to_recv = 0;
@@ -106,7 +109,7 @@ dg_send_recv(int fd,
     tv.it_interval = tv.it_value;
     setitimer(ITIMER_REAL, &tv, NULL);
     // 更新超时控制器信息
-    rtt_stop(&rttinfo, rtt_ts(&rttinfo) - recvhdr.ts);
+    rtt_stop(&rttinfo, rtt_ts(&rttinfo) - recvhdr.rtt_ts);
 
     return resp_to_recv;	/* 返回收到的回复分组数量 */
 }

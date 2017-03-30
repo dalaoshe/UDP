@@ -123,221 +123,248 @@ UDP/fast:
 	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/build
 .PHONY : UDP/fast
 
-client_send_recv.o: client_send_recv.c.o
+UDPThread.o: UDPThread.cpp.o
+
+.PHONY : UDPThread.o
+
+# target to build an object file
+UDPThread.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/UDPThread.cpp.o
+.PHONY : UDPThread.cpp.o
+
+UDPThread.i: UDPThread.cpp.i
+
+.PHONY : UDPThread.i
+
+# target to preprocess a source file
+UDPThread.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/UDPThread.cpp.i
+.PHONY : UDPThread.cpp.i
+
+UDPThread.s: UDPThread.cpp.s
+
+.PHONY : UDPThread.s
+
+# target to generate assembly for a file
+UDPThread.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/UDPThread.cpp.s
+.PHONY : UDPThread.cpp.s
+
+client_send_recv.o: client_send_recv.cpp.o
 
 .PHONY : client_send_recv.o
 
 # target to build an object file
-client_send_recv.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.o
-.PHONY : client_send_recv.c.o
+client_send_recv.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.cpp.o
+.PHONY : client_send_recv.cpp.o
 
-client_send_recv.i: client_send_recv.c.i
+client_send_recv.i: client_send_recv.cpp.i
 
 .PHONY : client_send_recv.i
 
 # target to preprocess a source file
-client_send_recv.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.i
-.PHONY : client_send_recv.c.i
+client_send_recv.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.cpp.i
+.PHONY : client_send_recv.cpp.i
 
-client_send_recv.s: client_send_recv.c.s
+client_send_recv.s: client_send_recv.cpp.s
 
 .PHONY : client_send_recv.s
 
 # target to generate assembly for a file
-client_send_recv.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.c.s
-.PHONY : client_send_recv.c.s
+client_send_recv.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/client_send_recv.cpp.s
+.PHONY : client_send_recv.cpp.s
 
-do_client.o: do_client.c.o
+do_client.o: do_client.cpp.o
 
 .PHONY : do_client.o
 
 # target to build an object file
-do_client.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.o
-.PHONY : do_client.c.o
+do_client.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.cpp.o
+.PHONY : do_client.cpp.o
 
-do_client.i: do_client.c.i
+do_client.i: do_client.cpp.i
 
 .PHONY : do_client.i
 
 # target to preprocess a source file
-do_client.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.i
-.PHONY : do_client.c.i
+do_client.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.cpp.i
+.PHONY : do_client.cpp.i
 
-do_client.s: do_client.c.s
+do_client.s: do_client.cpp.s
 
 .PHONY : do_client.s
 
 # target to generate assembly for a file
-do_client.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.c.s
-.PHONY : do_client.c.s
+do_client.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_client.cpp.s
+.PHONY : do_client.cpp.s
 
-do_server.o: do_server.c.o
+do_server.o: do_server.cpp.o
 
 .PHONY : do_server.o
 
 # target to build an object file
-do_server.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.o
-.PHONY : do_server.c.o
+do_server.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.cpp.o
+.PHONY : do_server.cpp.o
 
-do_server.i: do_server.c.i
+do_server.i: do_server.cpp.i
 
 .PHONY : do_server.i
 
 # target to preprocess a source file
-do_server.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.i
-.PHONY : do_server.c.i
+do_server.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.cpp.i
+.PHONY : do_server.cpp.i
 
-do_server.s: do_server.c.s
+do_server.s: do_server.cpp.s
 
 .PHONY : do_server.s
 
 # target to generate assembly for a file
-do_server.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.c.s
-.PHONY : do_server.c.s
+do_server.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/do_server.cpp.s
+.PHONY : do_server.cpp.s
 
-error_check.o: error_check.c.o
+error_check.o: error_check.cpp.o
 
 .PHONY : error_check.o
 
 # target to build an object file
-error_check.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.o
-.PHONY : error_check.c.o
+error_check.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.cpp.o
+.PHONY : error_check.cpp.o
 
-error_check.i: error_check.c.i
+error_check.i: error_check.cpp.i
 
 .PHONY : error_check.i
 
 # target to preprocess a source file
-error_check.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.i
-.PHONY : error_check.c.i
+error_check.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.cpp.i
+.PHONY : error_check.cpp.i
 
-error_check.s: error_check.c.s
+error_check.s: error_check.cpp.s
 
 .PHONY : error_check.s
 
 # target to generate assembly for a file
-error_check.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.c.s
-.PHONY : error_check.c.s
+error_check.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/error_check.cpp.s
+.PHONY : error_check.cpp.s
 
-main.o: main.c.o
+main.o: main.cpp.o
 
 .PHONY : main.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.c.o
-.PHONY : main.c.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-main.i: main.c.i
+main.i: main.cpp.i
 
 .PHONY : main.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.c.i
-.PHONY : main.c.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-main.s: main.c.s
+main.s: main.cpp.s
 
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.c.s
-.PHONY : main.c.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/main.cpp.s
+.PHONY : main.cpp.s
 
-recvfrom_flags.o: recvfrom_flags.c.o
+recvfrom_flags.o: recvfrom_flags.cpp.o
 
 .PHONY : recvfrom_flags.o
 
 # target to build an object file
-recvfrom_flags.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.c.o
-.PHONY : recvfrom_flags.c.o
+recvfrom_flags.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.cpp.o
+.PHONY : recvfrom_flags.cpp.o
 
-recvfrom_flags.i: recvfrom_flags.c.i
+recvfrom_flags.i: recvfrom_flags.cpp.i
 
 .PHONY : recvfrom_flags.i
 
 # target to preprocess a source file
-recvfrom_flags.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.c.i
-.PHONY : recvfrom_flags.c.i
+recvfrom_flags.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.cpp.i
+.PHONY : recvfrom_flags.cpp.i
 
-recvfrom_flags.s: recvfrom_flags.c.s
+recvfrom_flags.s: recvfrom_flags.cpp.s
 
 .PHONY : recvfrom_flags.s
 
 # target to generate assembly for a file
-recvfrom_flags.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.c.s
-.PHONY : recvfrom_flags.c.s
+recvfrom_flags.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/recvfrom_flags.cpp.s
+.PHONY : recvfrom_flags.cpp.s
 
-rtt.o: rtt.c.o
+rtt.o: rtt.cpp.o
 
 .PHONY : rtt.o
 
 # target to build an object file
-rtt.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.c.o
-.PHONY : rtt.c.o
+rtt.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.cpp.o
+.PHONY : rtt.cpp.o
 
-rtt.i: rtt.c.i
+rtt.i: rtt.cpp.i
 
 .PHONY : rtt.i
 
 # target to preprocess a source file
-rtt.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.c.i
-.PHONY : rtt.c.i
+rtt.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.cpp.i
+.PHONY : rtt.cpp.i
 
-rtt.s: rtt.c.s
+rtt.s: rtt.cpp.s
 
 .PHONY : rtt.s
 
 # target to generate assembly for a file
-rtt.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.c.s
-.PHONY : rtt.c.s
+rtt.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/rtt.cpp.s
+.PHONY : rtt.cpp.s
 
-token_bucket.o: token_bucket.c.o
+token_bucket.o: token_bucket.cpp.o
 
 .PHONY : token_bucket.o
 
 # target to build an object file
-token_bucket.c.o:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.c.o
-.PHONY : token_bucket.c.o
+token_bucket.cpp.o:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.cpp.o
+.PHONY : token_bucket.cpp.o
 
-token_bucket.i: token_bucket.c.i
+token_bucket.i: token_bucket.cpp.i
 
 .PHONY : token_bucket.i
 
 # target to preprocess a source file
-token_bucket.c.i:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.c.i
-.PHONY : token_bucket.c.i
+token_bucket.cpp.i:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.cpp.i
+.PHONY : token_bucket.cpp.i
 
-token_bucket.s: token_bucket.c.s
+token_bucket.s: token_bucket.cpp.s
 
 .PHONY : token_bucket.s
 
 # target to generate assembly for a file
-token_bucket.c.s:
-	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.c.s
-.PHONY : token_bucket.c.s
+token_bucket.cpp.s:
+	$(MAKE) -f CMakeFiles/UDP.dir/build.make CMakeFiles/UDP.dir/token_bucket.cpp.s
+.PHONY : token_bucket.cpp.s
 
 token_bucket_map.o: token_bucket_map.cpp.o
 
@@ -375,6 +402,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... UDP"
+	@echo "... UDPThread.o"
+	@echo "... UDPThread.i"
+	@echo "... UDPThread.s"
 	@echo "... client_send_recv.o"
 	@echo "... client_send_recv.i"
 	@echo "... client_send_recv.s"

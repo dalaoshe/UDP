@@ -5,6 +5,7 @@
 #include "server_util.h"
 #include "UDPThread.h"
 
+//#define SERVER_DEBUG
 static struct Token_Bucket output_token_bucket;
 static struct TokenBucketMap *ip_input_token_bucket;
 static struct sockaddr_in server_addr;
@@ -33,12 +34,16 @@ static int has_input_token(uint32_t ip) {
     if(exist(ip_input_token_bucket, ip)) {
         int token = getToken(getTokenBucket(ip_input_token_bucket,ip));
         if(!token) {
+#ifdef SERVER_DEBUG
             fprintf(stderr, "%u bucket exist but not token\n", ip);
+#endif
             return 0;
         }
     }
     else {
+#ifdef SERVER_DEBUG
         fprintf(stderr, "add an bucket for %u\n", ip);
+#endif
         addTokenBucket(ip_input_token_bucket,ip);
         int token = getToken(getTokenBucket(ip_input_token_bucket,ip));
         return token;
@@ -54,40 +59,38 @@ void* do_response(void* argv) {
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&opt, sizeof(opt));
     Bind_Socket(sockfd, (struct sockaddr *) &server_addr, sizeof(struct sockaddr_in));
 
-    printf("\n<---- do response sleep 3 first%u tid %lu---->\n",para->client_addr.sin_addr.s_addr,pthread_self());
-
-    //sleep(3);
     struct ResponseData response[MAX_RESPONSE_PACKET];
     memset(response,0,sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
 
     if(check_hdr(&para->hdr)) { // 通过消息头, 检验请求合法性
-        printf("valid hdr\n");
         if(has_input_token((&para->client_addr)->sin_addr.s_addr)) {//令牌桶 检验该ip是否有进入流量资格
-            printf("has input token\n");
             if (getToken(&output_token_bucket)) {//令牌桶 检验服务器是否还有出口流量
-                printf("get output token\n");
                 int pkt_len = pack_response_data(&para->request, response);// 根据请求打包回复的分组序列
                 for(int i = 0 ; i < pkt_len; ++i) {// 将分组逐一发送
                     pack_response_hdr(&para->hdr, pkt_len, (pkt_len-1-i)); // 设置每个分组的对应消息头
                     Sendto(sockfd, &para->hdr, sizeof(struct control_hdr), response+i, sizeof(struct ResponseData), (SA *) &para->client_addr, para->len);
                 }
+#ifdef SERVER_DEBUG
                 printf("INFO: there are tokens=%u left\n", output_token_bucket.tokens);
+#endif
             } else {
-                printf("REJECT: no output token wait ! %u\n", output_token_bucket.tokens);
+                printf("REJECT: THERE ARE NO OUTPUT TOKENS FOR IP:%u, WAIT RETRANSIMIT ! %u\n",para->client_addr.sin_addr.s_addr, output_token_bucket.tokens);
             }
         }
         else {
-            printf("REJECT: no input token wait\n");
+            printf("REJECT: THERE ARE NO INPUT TOKENS FOR IP:%u, WAIT RETRANSIMIT\n",para->client_addr.sin_addr.s_addr);
         }
     }
     close(sockfd);
 
     pthread_t pid = pthread_self();
+#ifdef SERVER_DEBUG
+    printf("\n<---- sleep before exit tid %lu---->\n",pid);
+    sleep(40);
     printf("\n<---- free tid %lu---->\n",pid);
+#endif
     freeThread(threadPool, pid);
     pthread_exit(0);
-
-    return (NULL);
 }
 
 void do_server() {
@@ -133,15 +136,17 @@ void do_server() {
         memset(&info,0,sizeof(info));
         memset(&client_addr, 0, sizeof(client_addr));
         // 接收请求
-        printf("\n2next\n");
+        printf("\n<---- WAIT REQUEST ---->\n");
         if(Recvfrom_flags(sockfd, &hdr, sizeof(hdr), &request, sizeof(request), &flags, (SA*)&client_addr, &len, &info)
            < (sizeof(hdr) + sizeof(request)))// 收到小于协议长度的包,不再处理
             continue;
-        printf("\n<---- GET AN REQUEST FROM %u ---->\n",client_addr.sin_addr.s_addr);
+        printf("\n<---- GET AN REQUEST FROM IP(dec):%u ---->\n",client_addr.sin_addr.s_addr);
 
         pthread_t *tid = getIdleThread(threadPool);
-        if(tid == 0) {// 线程池满不处理请求，客户端自动超时重传
-            printf("no thread\n");
+        if(tid == NULL) {// 线程池满不处理请求，客户端自动超时重传
+#ifdef SERVER_DEBUG
+            printf("\n no thread \n");
+#endif
             continue;
         }
         struct do_response_para para;
@@ -152,7 +157,6 @@ void do_server() {
         para.info = info;
         para.len = len;
         pthread_create(tid, NULL, &do_response, (void*)&para);
-        printf("\n1next\n");
     }
 }
 

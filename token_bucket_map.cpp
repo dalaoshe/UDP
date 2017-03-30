@@ -4,6 +4,9 @@
 #include "token_bucket.h"
 #include <map>
 #include <cstdio>
+
+//#define TOKEN_MAP_DEBUG
+
 struct TokenBucketMap {
     std::map<uint32_t, Token_Bucket*> ip_token_bucket;
     pthread_mutex_t input_token_bucket_map_mutex; // 保护映射表，不保护Bucket，Bucket由各自的mutex保护
@@ -14,7 +17,7 @@ struct TokenBucketMap {
 
 int exist(TokenBucketMap* t_map, uint32_t ip){
     pthread_mutex_lock(&t_map->input_token_bucket_map_mutex);
-    int exist = t_map->ip_token_bucket.count(ip);
+    unsigned long  exist = t_map->ip_token_bucket.count(ip);
     pthread_mutex_unlock(&t_map->input_token_bucket_map_mutex);
     return exist;
 }
@@ -55,8 +58,10 @@ struct TokenBucketMap* initTokenBucket(struct TokenBucketMap* t_map) {
 
 void clearTimeOutTokenBucket(struct TokenBucketMap* t_map) {
     pthread_mutex_lock(&t_map->input_token_bucket_map_mutex);
+#ifdef TOKEN_MAP_DEBUG
     printf("check clear\n");
     sleep(2);
+#endif
     std::map<uint32_t, Token_Bucket*>::iterator it;
     for(it = t_map->ip_token_bucket.begin(); it != t_map->ip_token_bucket.end(); ++it) {
         Token_Bucket* bucket = it->second;
@@ -66,6 +71,8 @@ void clearTimeOutTokenBucket(struct TokenBucketMap* t_map) {
                 deleteTokenBucket(t_map,it->first);
         }
     }
+#ifdef TOKEN_MAP_DEBUG
     printf("check ok\n");
+#endif
     pthread_mutex_unlock(&t_map->input_token_bucket_map_mutex);
 }

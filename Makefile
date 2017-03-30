@@ -17,20 +17,7 @@ main: $(OBJS) $(HEAD)
 	g++ -o $(BINDIR)/$@ $(OBJS) -lpthread
 
 
-#main.o: main.c $(HEAD)
-#	gcc -c main.c 
-
-#do_server.o: do_server.c recvfrom_flags.o do_server.h
-#	gcc -c do_server.c recvfrom_flags.o
-
-server_util.o: server_util.cpp server_util.h
-	g++ -o $@ -c $<
-UDPThread.o: UDPThread.cpp UDPThread.h
-	g++ -o $@ -c $< 
-
-token_bucket_map.o: token_bucket_map.cpp token_bucket.h
-	g++ -o $@ -c $<
-%.o: %.c 
+%.o: %.cpp 
 	@echo $@ $< "gcc"
 	g++ -c $< -o $@  
 
