@@ -10,8 +10,6 @@ static struct Token_Bucket output_token_bucket;
 static struct TokenBucketMap *ip_input_token_bucket;
 static struct sockaddr_in server_addr;
 static struct ThreadPool* threadPool;
-static pthread_mutex_t thread_counter_mutex = PTHREAD_MUTEX_INITIALIZER;
-static uint32_t thread_counter;
 
 
 static int check_from_client(struct control_hdr* hdr) {// 确认请求包来自客户端
@@ -56,6 +54,7 @@ void* do_response(void* argv) {
 
     int sockfd = Socket(AF_INET, SOCK_DGRAM, 0);
     int opt = 1;
+    //客服端连接时设定了connect因此要设定端口复用,否则客户端不会接收该消息
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&opt, sizeof(opt));
     Bind_Socket(sockfd, (struct sockaddr *) &server_addr, sizeof(struct sockaddr_in));
 
@@ -104,6 +103,7 @@ void do_server() {
 
     int sockfd = Socket(AF_INET, SOCK_DGRAM, 0);
     int opt = 1;
+    //客服端连接时设定了connect因此要设定端口复用,否则客户端不会接收该消息
     setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&opt, sizeof(opt));
     Bind_Socket(sockfd, (struct sockaddr *) &server_addr, sizeof(struct sockaddr_in));
 

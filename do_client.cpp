@@ -25,7 +25,7 @@ uint32_t getIdentifier(char identifier[]) {
 }
 u_int8_t getParam(char param[]) {
    // printf("param %s\n",param);
-    if(strcmp(param,"-l=10") == 0) {
+    if(strcmp(param,"-l=10") == 0) {// 目前只支持该参数= =~,其余均返回默认精度
         //printf("param %s\n",param);
         return (PARAM_P | PARAM_D);
     }
@@ -149,31 +149,42 @@ void do_client() {
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERV_PORT);
     int res = inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
-    //servaddr.sin_addr.s_addr = htonl("59.66.134.48");
     socklen_t len = sizeof(servaddr);
 
     int sockfd = Socket(AF_INET, SOCK_DGRAM, 0);
     Socket_Peer_Connect(sockfd, (SA*) &servaddr, len);
 
-    char cmd_str[MAX_LEN]  = "PI" ;
+    char cmd_str[MAX_LEN];
+    // 测试数据文件
     char name[MAX_LEN] = "test.txt";
-    printf("client start\n");
+
+    printf("\n<----  Client Start  ---->\n");
     FILE* file;
     if(!(file = fopen(name, "r"))) {
         fprintf(stderr, "open file:%s failed \n", name);
     }
+
     size_t n = fread(cmd_str,1,MAX_LEN,file);
+
     int index = 0;
+    int last_index = 0;
     struct ResponseData responseData[MAX_RESPONSE_PACKET];
     struct RequestData requestData;
+
     while(index < n) {
 
         memset(responseData, 0, sizeof(struct ResponseData)*MAX_RESPONSE_PACKET);
-        printf("YOU ARE SENDING REQUEST: \n%s\n...........\n",cmd_str);
+
+        last_index = index;
         index += pack_request_data(cmd_str+index, &requestData);
+        char now_cmd[MAX_LEN];
+        strcpy(now_cmd, cmd_str+last_index);
+
+        now_cmd[index] = 0;
+        printf("YOU ARE SENDING REQUEST: %s \n",now_cmd);
 
         int resp_pkt_len = Client_send_recv(sockfd, &requestData, sizeof(requestData), responseData, sizeof(struct ResponseData), (SA*)&servaddr, len);
-        if(resp_pkt_len < 0) {
+        if(resp_pkt_len <= 0) {
             printf("ERROR: RECV %d PKT, ERROR\n",resp_pkt_len);
         }
         else {
@@ -183,7 +194,7 @@ void do_client() {
                 for(int j = 0; j < RESPONSE_LEN; ++j)
                     printf("%c",response->data[j]);
             }
-            printf("\nOVER\n");
+            printf("\n<---- THIS REQUEST OVER ---->\n\n");
         }
 
         sleep(2);

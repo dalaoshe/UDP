@@ -130,7 +130,7 @@ int Client_send_recv(int fd,
     ssize_t	n;
     n = dg_send_recv(fd, outbuff, outbytes, inbuff, inbytes,
                      destaddr, destlen);
-    if (n < 0)
+    if (n <= 0)
         printf("ERROR: Dg_send_recv error, fail to get recv, give up \n\n");
     return(n);
 }

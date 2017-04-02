@@ -5,7 +5,7 @@
 #include "server_util.h"
 #include <cstdlib>
 #define MAX_NUMBER_LEN 4096
-static char pi[] = "3.141592657123456789123456789";
+static char pi[] = "3.14159265712345678912345678934567891234567893456789123456789345678912345678934567891234567893456789123456789";
 static int getNumber(int id, char* buffer) {
     switch (id) {
         case PI: {
